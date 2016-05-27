@@ -14,8 +14,19 @@
         "./node_modules/typescript/lib/lib.es6.d.ts"
     ],
     "files": [
-        "./containers/App.ts",
-        "./index.ts",
-        "./node_modules/typescript/lib/lib.es6.d.ts"
+        "actions/index.ts",
+        "components/Footer.ts",
+        "components/Header.ts",
+        "components/MainSection.ts",
+        "components/TodoItem.ts",
+        "components/TodoTextInput.ts",
+        "constants/ActionTypes.ts",
+        "constants/TodoFilters.ts",
+        "containers/App.ts",
+        "index.ts",
+        "reducers/index.ts",
+        "reducers/todos.ts",
+        "store/configureStore.ts",
+        "node_modules/typescript/lib/lib.es6.d.ts"
     ]
 }

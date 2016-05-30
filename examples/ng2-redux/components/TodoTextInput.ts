@@ -1,52 +1,42 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'ex-todo-text-input',
   template: `
     <input
       [class.edit]="editing"
-      [class.newTodo]="newTodo"
+      [class.new-todo]="newTodo"
       type="text"
       [attr.placeholder]="placeholder"
       autoFocus="true"
-      [attr.value]="text"
+      [(ngModel)]="text"
       (blur)="handleBlur($event)"
-      (change)="handleChange($event)"
       (keydown)="handleSubmit($event)"
     >
   `,
 })
 class TodoTextInput {
-  @Input() editing: boolean
-  @Input() newTodo: boolean
-  @Input() placeholder: string
-  @Output() save = new EventEmitter()
-
-  private text: string
-
-  constructor() {
-    this.text = ''
-  }
+  @Input() text: string;
+  @Input() editing: boolean;
+  @Input() newTodo: boolean;
+  @Input() placeholder: string;
+  @Output() save = new EventEmitter();
 
   handleSubmit(e: any) {
-    const text = e.target.value.trim()
+    const text = e.target.value.trim();
     if (e.which === 13) {
-      this.save.emit(text)
+      this.save.emit(text);
       if (this.newTodo) {
-        this.text = ''
+        this.text = '';
       }
     }
   }
 
-  handleChange(e: any) {
-    this.text = e.target.value
-  }
-
   handleBlur(e: any) {
     if (!this.newTodo) {
-      this.save.emit(e.target.value)
+      this.save.emit(e.target.value);
     }
   }
 }
 
-export default TodoTextInput
+export default TodoTextInput;

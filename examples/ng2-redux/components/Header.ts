@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core'
-import TodoTextInput from './TodoTextInput'
+import { Component, Input } from '@angular/core';
+import TodoTextInput from './TodoTextInput';
 
 @Component({
   selector: 'ex-header',
@@ -16,13 +16,13 @@ import TodoTextInput from './TodoTextInput'
   `,
 })
 class Header {
-  @Input() addTodo: Function
+  @Input() addTodo: Function;
 
-  handleSave(text: string): void {
+  handleSave(text: string) {
     if (text.length !== 0) {
-      this.addTodo(text)
+      this.addTodo(text);
     }
   }
 }
 
-export default Header
+export default Header;

@@ -1,14 +1,15 @@
-import { Component, Input } from '@angular/core'
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters'
-import { Todo } from '../containers/App'
-import TodoItem from './TodoItem'
-import Footer from './Footer'
+import { Component, Input } from '@angular/core';
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters';
+import { Todo } from '../containers/App';
+import TodoItem from './TodoItem';
+import Footer from './Footer';
+import * as TodoActions from '../actions/index'
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
   [SHOW_ACTIVE]: (todo: Todo) => !todo.completed,
   [SHOW_COMPLETED]: (todo: Todo) => todo.completed
-} as { [key: string]: Function }
+} as { [key: string]: (value: Todo, index: number, array: Todo[]) => boolean; };
 
 @Component({
   selector: 'ex-main-section',
@@ -19,54 +20,63 @@ const TODO_FILTERS = {
         *ngIf="todos.length > 0"
         class="toggle-all"
         type="checkbox"
-        [attr.checked]="completedCount === todos.length"
+        [attr.checked]="completedCount === todos.length ? true : null"
         (change)="actions.completeAll"
       >
       <ul
         class="todo-list"
         *ngFor="let todo of filteredTodos"
       >
-        <ex-todo-item [key]="todo.id" [todo]="todo" [actions]="actions"></ex-todo-item>
+        <ex-todo-item [todo]="todo" [actions]="actions"></ex-todo-item>
       </ul>
       
       <ex-footer
         [completedCount]="completedCount"
         [activeCount]="activeCount"
-        [filter]="filter"
+        [selectedFilter]="filter"
         (clearCompleted)="handleClearCompleted()"
-        (show)="handleShow(filter)"
+        (show)="handleShow($event)"
       ></ex-footer>
     </section>
   `,
 })
 class MainSection {
-  @Input() todos: any
-  @Input() actions: any
-  private filter: string
+  @Input() todos: Todo[];
+  @Input() actions: TodoActions.Actions;
 
-  private filteredTodos: Todo[]
-  private completedCount: number
+  private filter: string;
+  private filteredTodos: Todo[];
+  private completedCount: number;
+  private activeCount: number;
 
   ngOnInit() {
-    this.filter = SHOW_ALL
+    this.filter = SHOW_ALL;
+    this.update();
   }
 
   ngOnChanges() {
-    if (this.filter) {
-      this.filteredTodos = this.todos.filter(TODO_FILTERS[this.filter])
-    }
-    this.completedCount = this.todos.reduce((count: number, todo: Todo) =>
-      todo.completed ? count + 1 : count, 0
-    )
+    this.update();
   }
 
   handleClearCompleted() {
-    this.actions.clearCompleted()
+    this.actions.clearCompleted();
   }
 
   handleShow(filter: string) {
-    this.filter = filter
+    this.filter = filter;
+    this.update();
+  }
+
+  update() {
+    if (this.filter) {
+      this.filteredTodos = this.todos.filter(TODO_FILTERS[this.filter]);
+    }
+    this.completedCount = this.todos.reduce((count: number, todo: Todo) => {
+      return todo.completed ? count + 1 : count;
+    }, 0);
+
+    this.activeCount = this.todos.length - this.completedCount;
   }
 }
 
-export default MainSection
+export default MainSection;

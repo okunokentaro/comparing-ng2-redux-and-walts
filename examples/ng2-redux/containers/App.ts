@@ -1,12 +1,18 @@
 import { Component } from '@angular/core'
-import { Unsubscribe, bindActionCreators } from 'redux'
+import { Unsubscribe, Dispatch, ActionCreatorsMapObject, bindActionCreators } from 'redux'
 import { NgRedux } from 'ng2-redux'
-import * as TodoActions from '../actions'
+import * as TodoActions from '../actions/index'
 import Header from '../components/Header'
 import MainSection from '../components/MainSection'
 
+export interface Todo {
+  text: string
+  completed: boolean
+  id: number
+}
+
 export interface AppState {
-  todos: any
+  todos: Todo[]
 }
 
 @Component({
@@ -41,9 +47,9 @@ class App {
     }
   }
 
-  mapDispatchToProps(dispatch): TodoActions {
+  mapDispatchToProps(dispatch: Dispatch<any>): {actions: TodoActions.Actions} {
     return {
-      actions: bindActionCreators(TodoActions, dispatch)
+      actions: bindActionCreators(TodoActions as TodoActions.Actions, dispatch)
     }
   }
 }

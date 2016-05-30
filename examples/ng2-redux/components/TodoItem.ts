@@ -1,14 +1,17 @@
 import { Component, Input } from '@angular/core'
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters'
+import { Todo } from '../containers/App'
+import TodoTextInput from './TodoTextInput'
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: todo => !todo.completed,
-  [SHOW_COMPLETED]: todo => todo.completed
+  [SHOW_ACTIVE]: (todo: Todo) => !todo.completed,
+  [SHOW_COMPLETED]: (todo: Todo) => todo.completed
 }
 
 @Component({
-  selector: 'ex-header',
+  selector: 'ex-todo-item',
+  directives: [ TodoTextInput ],
   template: `
     <li
       [class.completed]="todo.completed"
@@ -36,7 +39,7 @@ const TODO_FILTERS = {
         <button
           class="destroy"
           (click)="deleteTodo(todo.id)"
-        >
+        ></button>
       </div>
     </li>
   `,
@@ -57,7 +60,7 @@ class TodoItem {
     this.editing = true
   }
 
-  handleSave(id, text) {
+  handleSave(id: number, text: string) {
     if (text.length === 0) {
       this.deleteTodo(id)
     } else {

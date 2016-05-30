@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core'
 
 @Component({
-  selector: 'ex-header',
+  selector: 'ex-todo-text-input',
   template: `
     <input
       [class.edit]="editing"
@@ -10,17 +10,17 @@ import { Component, Input, Output, EventEmitter } from '@angular/core'
       [attr.placeholder]="placeholder"
       autoFocus="true"
       [attr.value]="text"
-      (blur)="handleBlur()"
-      (change)="handleChange()"
-      (keyDown)="handleSubmit()"
+      (blur)="handleBlur($event)"
+      (change)="handleChange($event)"
+      (keydown)="handleSubmit($event)"
     >
   `,
 })
 class TodoTextInput {
-  @Input editing: boolean
-  @Input newTodo: boolean
-  @Input placeholder: string
-  @Output save = new EventEmitter()
+  @Input() editing: boolean
+  @Input() newTodo: boolean
+  @Input() placeholder: string
+  @Output() save = new EventEmitter()
 
   private text: string
 
@@ -38,11 +38,11 @@ class TodoTextInput {
     }
   }
 
-  handleChange(e) {
+  handleChange(e: any) {
     this.text = e.target.value
   }
 
-  handleBlur(e) {
+  handleBlur(e: any) {
     if (!this.newTodo) {
       this.save.emit(e.target.value)
     }

@@ -1,14 +1,18 @@
 import { Component, Input } from '@angular/core'
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters'
+import { Todo } from '../containers/App'
+import TodoItem from './TodoItem'
+import Footer from './Footer'
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: todo => !todo.completed,
-  [SHOW_COMPLETED]: todo => todo.completed
-}
+  [SHOW_ACTIVE]: (todo: Todo) => !todo.completed,
+  [SHOW_COMPLETED]: (todo: Todo) => todo.completed
+} as { [key: string]: Function }
 
 @Component({
-  selector: 'ex-header',
+  selector: 'ex-main-section',
+  directives: [ TodoItem, Footer ],
   template: `
     <section class="main">
       <input
@@ -38,13 +42,30 @@ const TODO_FILTERS = {
 class MainSection {
   @Input() todos: any
   @Input() actions: any
+  private filter: string
+
+  private filteredTodos: Todo[]
+  private completedCount: number
+
+  ngOnInit() {
+    this.filter = SHOW_ALL
+  }
+
+  ngOnChanges() {
+    if (this.filter) {
+      this.filteredTodos = this.todos.filter(TODO_FILTERS[this.filter])
+    }
+    this.completedCount = this.todos.reduce((count: number, todo: Todo) =>
+      todo.completed ? count + 1 : count, 0
+    )
+  }
 
   handleClearCompleted() {
     this.actions.clearCompleted()
   }
 
-  handleShow(filter) {
-    this.setState({filter})
+  handleShow(filter: string) {
+    this.filter = filter
   }
 }
 

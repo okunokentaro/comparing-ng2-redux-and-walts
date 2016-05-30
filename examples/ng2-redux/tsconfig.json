@@ -26,7 +26,6 @@
         "index.ts",
         "reducers/index.ts",
         "reducers/todos.ts",
-        "store/configureStore.ts",
         "node_modules/typescript/lib/lib.es6.d.ts"
     ]
 }

@@ -5,7 +5,7 @@ const FILTER_TITLES = {
   [SHOW_ALL]      : 'All',
   [SHOW_ACTIVE]   : 'Active',
   [SHOW_COMPLETED]: 'Completed'
-}
+} as {[key: string]: string}
 
 @Component({
   selector: 'ex-footer',
@@ -53,7 +53,7 @@ class Footer {
 
   ngOnInit() {
     this.itemWord = this.activeCount === 1 ? 'item' : 'items'
-    this.title = (filter) => FILTER_TITLES[filter];
+    this.title = (filter: string) => FILTER_TITLES[filter];
   }
 
   handleShow(filter: string) {

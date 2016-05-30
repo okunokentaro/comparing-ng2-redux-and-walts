@@ -1,19 +1,25 @@
-import { Component } from '@angular/core'
-import { Unsubscribe, bindActionCreators } from 'redux'
-import { NgRedux } from 'ng2-redux'
-import * as TodoActions from '../actions'
-import Header from "../components/Header";
-import MainSection from "../components/MainSection";
+import { Component } from '@angular/core';
+import { Unsubscribe, Dispatch, ActionCreatorsMapObject, bindActionCreators } from 'redux';
+import { NgRedux } from 'ng2-redux';
+import * as TodoActions from '../actions/index';
+import Header from '../components/Header';
+import MainSection from '../components/MainSection';
+
+export interface Todo {
+  text: string;
+  completed: boolean;
+  id: number;
+}
 
 export interface AppState {
-
+  todos: Todo[];
 }
 
 @Component({
   selector: 'ex-app',
   directives: [ Header, MainSection ],
   template: `
-    <div>
+    <div class="todoapp">
       <ex-header [addTodo]="actions.addTodo"></ex-header>
       <ex-main-section [todos]="todos" [actions]="actions"></ex-main-section>
     </div>
@@ -28,24 +34,24 @@ class App {
     this.disconnect = this.ngRedux.connect(
       this.mapStateToProps,
       this.mapDispatchToProps
-    )(this)
+    )(this);
   }
 
   ngOnDestroy() {
-    this.disconnect()
+    this.disconnect();
   }
 
-  mapStateToProps(state) {
+  mapStateToProps(state: AppState): AppState {
     return {
       todos: state.todos
-    }
+    };
   }
 
-  mapDispatchToProps(dispatch) {
+  mapDispatchToProps(dispatch: Dispatch<any>): {actions: TodoActions.Actions} {
     return {
-      actions: bindActionCreators(TodoActions, dispatch)
-    }
+      actions: bindActionCreators(TodoActions as TodoActions.Actions, dispatch)
+    };
   }
 }
 
-export default App
+export default App;

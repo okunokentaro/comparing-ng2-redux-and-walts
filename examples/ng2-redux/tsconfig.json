@@ -24,6 +24,8 @@
         "constants/TodoFilters.ts",
         "containers/App.ts",
         "index.ts",
+        "reducers/index.ts",
+        "reducers/todos.ts",
         "node_modules/typescript/lib/lib.es6.d.ts"
     ]
 }

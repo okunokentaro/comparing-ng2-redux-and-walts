@@ -1,9 +1,12 @@
 import 'core-js';
 import 'rxjs/Rx';
 import 'zone.js/dist/zone';
+import { bootstrap } from '@angular/platform-browser-dynamic';
+import { createStore } from 'redux';
+import { provider } from  'ng2-redux';
+import { default as App } from './containers/App';
+import rootReducer from './reducers/index';
 
-import {bootstrap} from '@angular/platform-browser-dynamic';
+const store = createStore(rootReducer);
 
-import {App} from './containers/App';
-
-bootstrap(App, []);
+bootstrap(App, [provider(store)]);

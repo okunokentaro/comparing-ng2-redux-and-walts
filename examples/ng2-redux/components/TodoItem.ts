@@ -1,14 +1,11 @@
-import { Component, Input } from '@angular/core'
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters'
-
-const TODO_FILTERS = {
-  [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: todo => !todo.completed,
-  [SHOW_COMPLETED]: todo => todo.completed
-}
+import { Component, Input } from '@angular/core';
+import * as TodoActions from '../actions/index';
+import TodoTextInput from './TodoTextInput';
+import { Todo } from "../containers/App";
 
 @Component({
-  selector: 'ex-header',
+  selector: 'ex-todo-item',
+  directives: [ TodoTextInput ],
   template: `
     <li
       [class.completed]="todo.completed"
@@ -18,7 +15,7 @@ const TODO_FILTERS = {
         *ngIf="editing"
         [text]="todo.text"
         [editing]="editing"
-        (save)="handleSave(todo.id, text)"
+        (save)="handleSave(todo.id, $event)"
       ></ex-todo-text-input>
       <div
         *ngIf="!editing"
@@ -27,44 +24,42 @@ const TODO_FILTERS = {
         <input
           class="toggle"
           type="checkbox"
-          [attr.checked]="todo.completed"
-          (change)="completeTodo(todo.id)"
+          [attr.checked]="todo.completed ? true : null"
+          (change)="actions.completeTodo(todo.id)"
         >
-        <label (doubleClick)="handleDoubleClick()">
-          {{todo.text}}
+        <label (dblclick)="handleDoubleClick()">
+          {{ todo.text }}
         </label>
         <button
           class="destroy"
-          (click)="deleteTodo(todo.id)"
-        >
+          (click)="actions.deleteTodo(todo.id)"
+        ></button>
       </div>
     </li>
   `,
 })
 class TodoItem {
-  @Input() todo: any
-  @Input() editTodo: Function
-  @Input() deleteTodo: Function
-  @Input() completeTodo: Function
+  @Input() todo: Todo;
+  @Input() actions: TodoActions.Actions;
 
-  private editing: boolean
+  private editing: boolean;
 
   ngOnInit() {
-    this.editing = false
+    this.editing = false;
   }
 
   handleDoubleClick() {
-    this.editing = true
+    this.editing = true;
   }
 
-  handleSave(id, text) {
+  handleSave(id:number, text: string) {
     if (text.length === 0) {
-      this.deleteTodo(id)
+      this.actions.deleteTodo(id);
     } else {
-      this.editTodo(id, text)
+      this.actions.editTodo(id, text);
     }
-    this.editing = false
+    this.editing = false;
   }
 }
 
-export default TodoItem
+export default TodoItem;

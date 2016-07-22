@@ -22,7 +22,7 @@ export class TodoTextInputComponent {
   @Input() placeholder: string;
   @Output() save = new EventEmitter();
 
-  onBlur(e: any) {
+  onKeydown(e: any) {
     const text = e.target.value.trim();
     if (e.which === 13) {
       this.save.emit(text);
@@ -32,7 +32,7 @@ export class TodoTextInputComponent {
     }
   }
 
-  onKeydown(e: any) {
+  onBlur(e: any) {
     if (!this.newTodo) {
       this.save.emit(e.target.value);
     }

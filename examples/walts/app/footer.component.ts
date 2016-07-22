@@ -30,5 +30,11 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   `,
 })
 export class FooterComponent {
+  @Input() completedCount: number;
+  @Input() activeCount: number;
+  @Input() selectedFilter: string;
 
+  title(filter: string): string {
+    return 'dummy';
+  }
 }

@@ -46,7 +46,7 @@ export class TodosRepository {
   }
 
   completedCount(): number {
-    return this.todos.reduce((count: number, todo: Todo) => {
+    return this.todos.reduce((count, todo) => {
       return todo.completed ? count + 1 : count;
     }, 0);
   }

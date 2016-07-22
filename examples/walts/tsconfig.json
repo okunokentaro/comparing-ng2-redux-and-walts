@@ -14,8 +14,26 @@
         "./node_modules/typescript/lib/lib.es6.d.ts"
     ],
     "files": [
-        "./app/app.component.ts",
-        "./index.ts",
-        "./node_modules/typescript/lib/lib.es6.d.ts"
-    ]
+        "app/actions/complete-all.action.ts",
+        "app/actions/delete-todo.action.ts",
+        "app/actions/edit-todo.action.ts",
+        "app/actions/index.ts",
+        "app/actions/set-filter.action.ts",
+        "app/actions/update-todos.action.ts",
+        "app/app.component.ts",
+        "app/app.dispatcher.ts",
+        "app/app.store.ts",
+        "app/footer.component.ts",
+        "app/header.component.ts",
+        "app/main-section.component.ts",
+        "app/todo-item.component.ts",
+        "app/todo-text-input.component.ts",
+        "app/todo.ts",
+        "app/todos.repository.ts",
+        "index.ts",
+        "node_modules/typescript/lib/lib.es6.d.ts"
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
 }

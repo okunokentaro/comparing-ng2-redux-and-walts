@@ -14,6 +14,7 @@
         "./node_modules/typescript/lib/lib.es6.d.ts"
     ],
     "files": [
+        "app/actions/add-todo.action.ts",
         "app/actions/complete-all.action.ts",
         "app/actions/delete-todo.action.ts",
         "app/actions/edit-todo.action.ts",

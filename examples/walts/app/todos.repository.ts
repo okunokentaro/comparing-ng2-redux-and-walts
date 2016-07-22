@@ -20,6 +20,17 @@ export class TodosRepository {
     }];
   }
 
+  addTodo(text: string) {
+    const id = this.todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
+    const todo = {
+      text,
+      completed: false,
+      id
+    };
+
+    this.todos.push(todo);
+  }
+
   filterByType(filter: FilterType): Todo[] {
     if (filter === 'showAll') {
       return this.todos;

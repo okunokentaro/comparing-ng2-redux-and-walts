@@ -20,6 +20,22 @@ export class TodosRepository {
     }];
   }
 
+  addTodo(text: string) {
+    const id = this.todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1;
+    const todo = {
+      text,
+      completed: false,
+      id
+    };
+
+    this.todos.push(todo);
+  }
+
+  editTodo(id: number, text: string) {
+    const todo = this.todos.find((todo) => todo.id === id);
+    todo.text = text;
+  }
+
   filterByType(filter: FilterType): Todo[] {
     if (filter === 'showAll') {
       return this.todos;
@@ -35,7 +51,7 @@ export class TodosRepository {
   }
 
   completedCount(): number {
-    return this.todos.reduce((count: number, todo: Todo) => {
+    return this.todos.reduce((count, todo) => {
       return todo.completed ? count + 1 : count;
     }, 0);
   }

@@ -31,6 +31,11 @@ export class TodosRepository {
     this.todos.push(todo);
   }
 
+  editTodo(id: number, text: string) {
+    const todo = this.todos.find((todo) => todo.id === id);
+    todo.text = text;
+  }
+
   filterByType(filter: FilterType): Todo[] {
     if (filter === 'showAll') {
       return this.todos;

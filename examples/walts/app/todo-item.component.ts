@@ -10,7 +10,10 @@ import { EditTodoAction } from './actions/edit-todo.action';
   selector: 'ex-todo-item',
   directives: [TodoTextInputComponent],
   template: `
-    <li>
+    <li
+      [class.completed]="todo.completed"
+      [class.editing]="editing"
+    >
       <ex-todo-text-input
         *ngIf="editing"
         [text]="todo.text"
@@ -60,7 +63,7 @@ export class TodoItemComponent {
       ? this.deleteTodo.create(id)
       : this.editTodo.create(id, text);
 
-    this.editing = false;
     this.dispatcher.emit(action);
+    this.editing = false;
   }
 }

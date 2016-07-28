@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { TodoTextInputComponent } from './todo-text-input.component';
 import { Todo } from './todo';
 import { AppDispatcher } from './app.dispatcher';
+import { CompleteTodoAction } from './actions/complete-todo.action';
 import { DeleteTodoAction } from './actions/delete-todo.action';
 import { EditTodoAction } from './actions/edit-todo.action';
 
@@ -28,7 +29,7 @@ import { EditTodoAction } from './actions/edit-todo.action';
           class="toggle"
           type="checkbox"
           [attr.checked]="todo.completed ? true : null"
-          (change)="actions.completeTodo(todo.id)"
+          (change)="onChangeTodo()"
         >
         <label (dblclick)="onDblclick()">
           {{todo.text}}
@@ -47,6 +48,7 @@ export class TodoItemComponent {
   private editing: boolean;
 
   constructor(private dispatcher: AppDispatcher,
+              private completeTodo: CompleteTodoAction,
               private deleteTodo: DeleteTodoAction,
               private editTodo: EditTodoAction) {}
 
@@ -65,5 +67,10 @@ export class TodoItemComponent {
 
     this.dispatcher.emit(action);
     this.editing = false;
+  }
+
+  onChangeTodo() {
+    const id = this.todo.id;
+    this.dispatcher.emit(this.completeTodo.create(id));
   }
 }

@@ -32,8 +32,13 @@ export class TodosRepository {
   }
 
   editTodo(id: number, text: string) {
-    const todo = this.todos.find((todo) => todo.id === id);
+    const todo = this.findTodo(id);
     todo.text = text;
+  }
+
+  completeTodo(id: number) {
+    const todo = this.findTodo(id);
+    todo.completed = !todo.completed;
   }
 
   filterByType(filter: FilterType): Todo[] {
@@ -68,6 +73,10 @@ export class TodosRepository {
         }
       })
     });
+  }
+
+  private findTodo(id: number): Todo {
+    return this.todos.find((todo) => todo.id === id);
   }
 
 }

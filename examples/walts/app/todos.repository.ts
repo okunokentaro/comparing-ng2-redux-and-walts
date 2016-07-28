@@ -45,6 +45,14 @@ export class TodosRepository {
     todo.completed = !todo.completed;
   }
 
+  completeAll() {
+    const areAllMarked = this.todos.every((todo) => todo.completed);
+    this.todos = this.todos.map((todo) => {
+      todo.completed = !areAllMarked;
+      return todo;
+    });
+  }
+
   filterByType(filter: FilterType): Todo[] {
     if (filter === 'showAll') {
       return this.todos;
@@ -67,16 +75,6 @@ export class TodosRepository {
 
   activeCount(): number {
     return this.todos.length - this.completedCount();
-  }
-
-  replaceTodos(todos: Todo[]) {
-    this.todos.forEach((todo, i) => {
-      todos.forEach((givenTodo) => {
-        if (givenTodo.id === todo.id) {
-          this.todos[i] = Object.assign(todo, givenTodo);
-        }
-      })
-    });
   }
 
   private findTodo(id: number): Todo {

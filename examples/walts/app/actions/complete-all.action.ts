@@ -16,11 +16,7 @@ export class CompleteAllAction extends Action<AppState> {
   create(): Reducer<AppState>[] {
     return this.combine(
       (state) => {
-        const todos = state.todos.map((todo) => {
-          todo.completed = true;
-          return todo;
-        });
-        this.repository.replaceTodos(todos);
+        this.repository.completeAll();
         return Promise.resolve(state);
       },
       this.updateTodos.create()

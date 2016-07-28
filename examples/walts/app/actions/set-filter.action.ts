@@ -15,9 +15,8 @@ export class SetFilterAction extends Action<AppState> {
   create(filter: FilterType): Reducer<AppState>[] {
     return this.combine(
       (state) => {
-        const next  = {} as AppState;
-        next.filter = filter;
-        return Promise.resolve(this.merge(state, next));
+        state.filter = filter;
+        return Promise.resolve(state);
       },
       this.updateTodos.create()
     )

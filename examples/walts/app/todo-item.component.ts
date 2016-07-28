@@ -36,7 +36,7 @@ import { EditTodoAction } from './actions/edit-todo.action';
         </label>
         <button
           class="destroy"
-          (click)="actions.deleteTodo(todo.id)"
+          (click)="onClickDestroy()"
         ></button>
       </div>
     </li>
@@ -72,5 +72,10 @@ export class TodoItemComponent {
   onChangeTodo() {
     const id = this.todo.id;
     this.dispatcher.emit(this.completeTodo.create(id));
+  }
+
+  onClickDestroy() {
+    const id = this.todo.id;
+    this.dispatcher.emit(this.deleteTodo.create(id));
   }
 }

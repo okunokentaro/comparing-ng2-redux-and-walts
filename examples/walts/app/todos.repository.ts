@@ -31,6 +31,10 @@ export class TodosRepository {
     this.todos.push(todo);
   }
 
+  deleteTodo(id: number) {
+    this.todos = this.todos.filter((todo) => todo.id !== id);
+  }
+
   editTodo(id: number, text: string) {
     const todo = this.findTodo(id);
     todo.text = text;

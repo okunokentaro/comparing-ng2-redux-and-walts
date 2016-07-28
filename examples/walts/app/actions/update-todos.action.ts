@@ -13,11 +13,10 @@ export class UpdateTodosAction extends Action<AppState> {
 
   create(): Reducer<AppState> {
     return (state) => {
-      const next          = {} as AppState;
-      next.todos          = this.repository.filterByType(state.filter);
-      next.completedCount = this.repository.completedCount();
-      next.activeCount    = this.repository.activeCount();
-      return Promise.resolve(this.merge(state, next));
+      state.todos          = this.repository.filterByType(state.filter);
+      state.completedCount = this.repository.completedCount();
+      state.activeCount    = this.repository.activeCount();
+      return Promise.resolve(state);
     };
   }
 

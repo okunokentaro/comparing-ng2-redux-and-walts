@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action, Reducer } from 'walts';
+import { Action, Next } from 'walts';
 
 import { AppState } from '../app.store';
 import { FilterType } from '../todos.repository';
@@ -12,12 +12,11 @@ export class SetFilterAction extends Action<AppState> {
     super();
   }
 
-  create(filter: FilterType): Reducer<AppState>[] {
+  create(filter: FilterType): Next<AppState>[] {
     return this.combine(
-      (state) => {
-        state.filter = filter;
-        return Promise.resolve(state);
-      },
+      (state) => ({
+        filter
+      }),
       this.updateTodos.create()
     )
   }

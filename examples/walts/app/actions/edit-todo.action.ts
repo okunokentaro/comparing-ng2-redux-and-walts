@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action, Reducer } from 'walts';
+import { Action, Next } from 'walts';
 
 import { AppState } from '../app.store'
 import { TodosRepository } from '../todos.repository'
@@ -13,11 +13,11 @@ export class EditTodoAction extends Action<AppState> {
     super();
   }
 
-  create(id: number, text: string): Reducer<AppState>[] {
+  create(id: number, text: string): Next<AppState>[] {
     return this.combine(
       (state) => {
         this.repository.editTodo(id, text);
-        return Promise.resolve(state);
+        return state;
       },
       this.updateTodos.create()
     );

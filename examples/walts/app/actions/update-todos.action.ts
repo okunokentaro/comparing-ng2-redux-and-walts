@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action, Reducer } from 'walts';
+import { Action, Next } from 'walts';
 
 import { AppState } from "../app.store";
 import { TodosRepository } from '../todos.repository';
@@ -11,13 +11,12 @@ export class UpdateTodosAction extends Action<AppState> {
     super();
   }
 
-  create(): Reducer<AppState> {
-    return (state) => {
-      state.todos          = this.repository.filterByType(state.filter);
-      state.completedCount = this.repository.completedCount();
-      state.activeCount    = this.repository.activeCount();
-      return Promise.resolve(state);
-    };
+  create(): Next<AppState> {
+    return (state) => ({
+      todos         : this.repository.filterByType(state.filter),
+      completedCount: this.repository.completedCount(),
+      activeCount   : this.repository.activeCount()
+    });
   }
 
 }

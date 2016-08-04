@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action, Reducer } from 'walts';
+import { Action, Next } from 'walts';
 
 import { AppState } from "../app.store";
 import { TodosRepository } from "../todos.repository";
@@ -13,11 +13,11 @@ export class CompleteAllAction extends Action<AppState> {
     super();
   }
 
-  create(): Reducer<AppState>[] {
+  create(): Next<AppState>[] {
     return this.combine(
       (state) => {
         this.repository.completeAll();
-        return Promise.resolve(state);
+        return state;
       },
       this.updateTodos.create()
     );

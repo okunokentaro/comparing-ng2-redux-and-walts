@@ -5,11 +5,11 @@ import { AppDispatcher } from './app.dispatcher';
 import { Todo } from "./todo";
 import { FilterType } from "./todos.repository";
 
-export class AppState extends State {
-  todos         : Todo[];
-  filter        : FilterType;
-  completedCount: number;
-  activeCount   : number;
+export interface AppState extends State {
+  todos?         : Todo[];
+  filter?        : FilterType;
+  completedCount?: number;
+  activeCount?   : number;
 }
 
 const INIT_STATE: AppState = {

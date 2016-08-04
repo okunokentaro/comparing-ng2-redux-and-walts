@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 
-import { TodoTextInputComponent } from './todo-text-input.component';
 import { Todo } from './todo';
 import { AppDispatcher } from './app.dispatcher';
 import { CompleteTodoAction } from './actions/complete-todo.action';
 import { DeleteTodoAction } from './actions/delete-todo.action';
 import { EditTodoAction } from './actions/edit-todo.action';
+
+import { TodoTextInputComponent } from './todo-text-input.component';
 
 @Component({
   selector: 'ex-todo-item',

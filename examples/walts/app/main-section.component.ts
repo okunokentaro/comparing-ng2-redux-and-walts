@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 
+import { Todo } from "./todo";
+import { FilterType } from "./todos.repository";
 import { SetFilterAction } from "./actions/set-filter.action";
 import { CompleteAllAction } from "./actions/complete-all.action";
 import { AppDispatcher } from "./app.dispatcher";
-import { Todo } from "./todo";
-import { FilterType } from "./todos.repository";
 
 import { FooterComponent } from './footer.component';
 import { TodoItemComponent } from './todo-item.component';
@@ -39,7 +39,6 @@ import { TodoItemComponent } from './todo-item.component';
   `,
 })
 export class MainSectionComponent {
-
   @Input() todos: Todo[];
   @Input() completedCount: number;
   @Input() activeCount: number;
@@ -47,9 +46,7 @@ export class MainSectionComponent {
 
   constructor(private dispatcher: AppDispatcher,
               private setFilter: SetFilterAction,
-              private completeAll: CompleteAllAction) {
-    // noop
-  }
+              private completeAll: CompleteAllAction) {}
 
   ngOnInit() {
     this.dispatcher.emit(this.setFilter.create('showAll'))
@@ -58,5 +55,4 @@ export class MainSectionComponent {
   onChangeCheckbox() {
     this.dispatcher.emit(this.completeAll.create());
   }
-
 }

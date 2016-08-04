@@ -21,9 +21,7 @@ const INIT_STATE: AppState = {
 
 @Injectable()
 export class AppStore extends Store<AppState> {
-
   constructor(protected dispatcher: AppDispatcher) {
     super(INIT_STATE, dispatcher);
   }
-
 }

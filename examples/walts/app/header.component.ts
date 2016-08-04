@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-
 import { AppDispatcher } from './app.dispatcher';
 import { AddTodoAction } from "./actions/add-todo.action";
 import { TodoTextInputComponent } from './todo-text-input.component';
@@ -19,13 +18,10 @@ import { TodoTextInputComponent } from './todo-text-input.component';
   `,
 })
 export class HeaderComponent {
-
   constructor(private dispatcher: AppDispatcher,
-              private addTodo: AddTodoAction) {
-  }
+              private addTodo: AddTodoAction) {}
 
   onSave(text: string) {
     this.dispatcher.emit(this.addTodo.create(text));
   }
-
 }

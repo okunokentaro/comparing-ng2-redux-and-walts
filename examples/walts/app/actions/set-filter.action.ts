@@ -3,11 +3,10 @@ import { Action, Next } from 'walts';
 
 import { AppState } from '../app.store';
 import { FilterType } from '../todos.repository';
-import { UpdateTodosAction } from "./update-todos.action";
+import { UpdateTodosAction } from './update-todos.action';
 
 @Injectable()
 export class SetFilterAction extends Action<AppState> {
-
   constructor(private updateTodos: UpdateTodosAction) {
     super();
   }
@@ -20,5 +19,4 @@ export class SetFilterAction extends Action<AppState> {
       this.updateTodos.create()
     )
   }
-
 }

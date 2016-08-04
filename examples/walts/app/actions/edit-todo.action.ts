@@ -7,7 +7,6 @@ import { UpdateTodosAction } from './update-todos.action'
 
 @Injectable()
 export class EditTodoAction extends Action<AppState> {
-
   constructor(private repository: TodosRepository,
               private updateTodos: UpdateTodosAction) {
     super();
@@ -22,5 +21,4 @@ export class EditTodoAction extends Action<AppState> {
       this.updateTodos.create()
     );
   }
-
 }

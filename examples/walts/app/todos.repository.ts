@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Todo } from './todo';
 
 export type FilterType =
@@ -15,7 +14,6 @@ export const FILTERS: FilterType[] = [
 
 @Injectable()
 export class TodosRepository {
-
   private todos: Todo[];
 
   constructor() {
@@ -90,5 +88,4 @@ export class TodosRepository {
   private findTodo(id: number): Todo {
     return this.todos.find((todo) => todo.id === id);
   }
-
 }

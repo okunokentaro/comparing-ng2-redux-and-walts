@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ACTIONS } from './actions';
 import { AppDispatcher } from './app.dispatcher';
@@ -30,18 +30,13 @@ import { MainSectionComponent } from './main-section.component';
   `,
 })
 export class AppComponent {
-
   private state: AppState;
   
-  constructor(private store: AppStore,
-              private cdRef: ChangeDetectorRef) {
-  }
+  constructor(private store: AppStore) {}
 
   ngOnInit(): void {
     this.store.observable.subscribe((state) => {
       this.state = state;
-      console.log(state);
-      this.cdRef.detectChanges();
     });
   }
 }

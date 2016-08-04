@@ -15,6 +15,7 @@
     ],
     "files": [
         "app/actions/add-todo.action.ts",
+        "app/actions/clear-completed.action.ts",
         "app/actions/complete-all.action.ts",
         "app/actions/complete-todo.action.ts",
         "app/actions/delete-todo.action.ts",

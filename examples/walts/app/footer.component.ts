@@ -1,4 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FilterType, FILTERS } from './todos.repository';
+import { SetFilterAction } from './actions/set-filter.action';
+import { AppDispatcher } from './app.dispatcher';
+import { ClearCompletedAction } from './actions/clear-completed.action';
 
 @Component({
   selector: 'ex-footer',
@@ -13,15 +17,15 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
           <a
             [class.selected]="filter === selectedFilter"
             style="cursor: pointer"
-            (click)="handleShow(filter)"
-          >{{ title(filter) }}</a>
+            (click)="onClickFilter(filter)"
+          >{{ filter }}</a>
         </li>
       </ul>
 
       <button
         *ngIf="completedCount > 0"
         class="clear-completed"
-        (click)="handleClearCompleted()"
+        (click)="onClickClearCompleted()"
       >
         Clear completed
       </button>
@@ -34,7 +38,19 @@ export class FooterComponent {
   @Input() activeCount: number;
   @Input() selectedFilter: string;
 
-  title(filter: string): string {
-    return 'dummy';
+  private filters: FilterType[];
+
+  constructor(private dispatcher: AppDispatcher,
+              private setFilter: SetFilterAction,
+              private clearCompleted: ClearCompletedAction) {
+    this.filters = FILTERS;
+  }
+
+  onClickFilter(filter: FilterType) {
+    this.dispatcher.emit(this.setFilter.create(filter))
+  }
+
+  onClickClearCompleted() {
+    this.dispatcher.emit(this.clearCompleted.create())
   }
 }

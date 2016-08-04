@@ -7,6 +7,12 @@ export type FilterType =
   'showActive' |
   'showCompleted';
 
+export const FILTERS: FilterType[] = [
+  'showAll',
+  'showActive',
+  'showCompleted'
+];
+
 @Injectable()
 export class TodosRepository {
 
@@ -51,6 +57,10 @@ export class TodosRepository {
       todo.completed = !areAllMarked;
       return todo;
     });
+  }
+
+  clearCompleted() {
+    this.todos = this.todos.filter((todo) => todo.completed === false);
   }
 
   filterByType(filter: FilterType): Todo[] {

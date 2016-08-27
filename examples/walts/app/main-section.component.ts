@@ -2,8 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { Todo } from "./todo";
 import { FilterType } from "./todos.repository";
-import { SetFilterAction } from "./actions/set-filter.action";
-import { CompleteAllAction } from "./actions/complete-all.action";
+import { AppActions } from "./actions";
 import { AppDispatcher } from "./app.dispatcher";
 
 import { FooterComponent } from './footer.component';
@@ -45,14 +44,13 @@ export class MainSectionComponent {
   @Input() filter: FilterType;
 
   constructor(private dispatcher: AppDispatcher,
-              private setFilter: SetFilterAction,
-              private completeAll: CompleteAllAction) {}
+              private actions: AppActions) {}
 
   ngOnInit() {
-    this.dispatcher.emit(this.setFilter.create('showAll'))
+    this.dispatcher.emit(this.actions.setFilter('showAll'))
   }
-  
+
   onChangeCheckbox() {
-    this.dispatcher.emit(this.completeAll.create());
+    this.dispatcher.emit(this.actions.completeAll());
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { ACTIONS } from './actions';
+import { AppActions } from './actions';
 import { AppDispatcher } from './app.dispatcher';
 import { AppStore, AppState } from './app.store';
 import { TodosRepository } from "./todos.repository";
@@ -12,7 +12,7 @@ import { MainSectionComponent } from './main-section.component';
   selector: 'ex-app',
   directives: [HeaderComponent, MainSectionComponent],
   providers: [
-    ACTIONS,
+    AppActions,
     TodosRepository,
     AppDispatcher,
     AppStore

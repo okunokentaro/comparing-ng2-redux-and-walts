@@ -2,9 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { Todo } from './todo';
 import { AppDispatcher } from './app.dispatcher';
-import { CompleteTodoAction } from './actions/complete-todo.action';
-import { DeleteTodoAction } from './actions/delete-todo.action';
-import { EditTodoAction } from './actions/edit-todo.action';
+import { AppActions } from './actions';
 
 import { TodoTextInputComponent } from './todo-text-input.component';
 
@@ -49,9 +47,7 @@ export class TodoItemComponent {
   private editing: boolean;
 
   constructor(private dispatcher: AppDispatcher,
-              private completeTodo: CompleteTodoAction,
-              private deleteTodo: DeleteTodoAction,
-              private editTodo: EditTodoAction) {}
+              private actions: AppActions) {}
 
   ngOnInit() {
     this.editing = false;
@@ -63,8 +59,8 @@ export class TodoItemComponent {
 
   onSave(id: number, text: string) {
     const action = text.length === 0
-      ? this.deleteTodo.create(id)
-      : this.editTodo.create(id, text);
+      ? this.actions.deleteTodo(id)
+      : this.actions.editTodo(id, text);
 
     this.dispatcher.emit(action);
     this.editing = false;
@@ -72,11 +68,11 @@ export class TodoItemComponent {
 
   onChangeTodo() {
     const id = this.todo.id;
-    this.dispatcher.emit(this.completeTodo.create(id));
+    this.dispatcher.emit(this.actions.completeTodo(id));
   }
 
   onClickDestroy() {
     const id = this.todo.id;
-    this.dispatcher.emit(this.deleteTodo.create(id));
+    this.dispatcher.emit(this.actions.deleteTodo(id));
   }
 }

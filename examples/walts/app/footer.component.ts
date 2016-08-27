@@ -1,8 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FilterType, FILTERS } from './todos.repository';
-import { SetFilterAction } from './actions/set-filter.action';
+import { AppActions } from './actions';
 import { AppDispatcher } from './app.dispatcher';
-import { ClearCompletedAction } from './actions/clear-completed.action';
 
 @Component({
   selector: 'ex-footer',
@@ -41,16 +40,15 @@ export class FooterComponent {
   private filters: FilterType[];
 
   constructor(private dispatcher: AppDispatcher,
-              private setFilter: SetFilterAction,
-              private clearCompleted: ClearCompletedAction) {
+              private actions: AppActions) {
     this.filters = FILTERS;
   }
 
   onClickFilter(filter: FilterType) {
-    this.dispatcher.emit(this.setFilter.create(filter))
+    this.dispatcher.emit(this.actions.setFilter(filter))
   }
 
   onClickClearCompleted() {
-    this.dispatcher.emit(this.clearCompleted.create())
+    this.dispatcher.emit(this.actions.clearCompleted())
   }
 }

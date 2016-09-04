@@ -17,6 +17,7 @@
         "app/app.actions.ts",
         "app/app.component.ts",
         "app/app.dispatcher.ts",
+        "app/app.module.ts",
         "app/app.store.ts",
         "app/footer.component.ts",
         "app/header.component.ts",

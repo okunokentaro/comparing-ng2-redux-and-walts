@@ -5,12 +5,8 @@ import { FilterType } from "./todos.repository";
 import { AppActions } from "./app.actions";
 import { AppDispatcher } from "./app.dispatcher";
 
-import { FooterComponent } from './footer.component';
-import { TodoItemComponent } from './todo-item.component';
-
 @Component({
   selector: 'ex-main-section',
-  directives: [TodoItemComponent, FooterComponent],
   template: `
     <section class="main">
       <input

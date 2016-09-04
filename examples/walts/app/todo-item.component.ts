@@ -4,11 +4,8 @@ import { Todo } from './todo';
 import { AppDispatcher } from './app.dispatcher';
 import { AppActions } from './app.actions';
 
-import { TodoTextInputComponent } from './todo-text-input.component';
-
 @Component({
   selector: 'ex-todo-item',
-  directives: [TodoTextInputComponent],
   template: `
     <li
       [class.completed]="todo.completed"

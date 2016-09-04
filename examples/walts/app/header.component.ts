@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
+
 import { AppDispatcher } from './app.dispatcher';
-import { TodoTextInputComponent } from './todo-text-input.component';
 import { AppActions } from "./app.actions";
 
 @Component({
   selector: 'ex-header',
-  directives: [TodoTextInputComponent],
   template: `
     <header class="header">
       <h1>todos</h1>

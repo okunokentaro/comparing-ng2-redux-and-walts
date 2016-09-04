@@ -1,22 +1,9 @@
 import { Component } from '@angular/core';
 
-import { AppActions } from './app.actions';
-import { AppDispatcher } from './app.dispatcher';
 import { AppStore, AppState } from './app.store';
-import { TodosRepository } from "./todos.repository";
-
-import { HeaderComponent } from './header.component';
-import { MainSectionComponent } from './main-section.component';
 
 @Component({
   selector: 'ex-app',
-  directives: [HeaderComponent, MainSectionComponent],
-  providers: [
-    AppActions,
-    TodosRepository,
-    AppDispatcher,
-    AppStore
-  ],
   template: `
     <div class="todoapp">
       <ex-header></ex-header>

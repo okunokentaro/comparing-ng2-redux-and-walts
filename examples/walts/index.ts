@@ -2,8 +2,7 @@ import 'core-js';
 import 'rxjs/Rx';
 import 'zone.js/dist/zone';
 
-import {bootstrap} from '@angular/platform-browser-dynamic';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './app/app.module';
 
-import {AppComponent} from './app/app.component';
-
-bootstrap(AppComponent, []);
+platformBrowserDynamic().bootstrapModule(AppModule);

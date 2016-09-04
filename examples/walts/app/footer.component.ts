@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FilterType, FILTERS } from './todos.repository';
 import { AppActions } from './app.actions';
 import { AppDispatcher } from './app.dispatcher';

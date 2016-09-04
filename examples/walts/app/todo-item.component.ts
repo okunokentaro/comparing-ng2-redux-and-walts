@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { Todo } from './todo';
 import { AppDispatcher } from './app.dispatcher';
-import { AppActions } from './actions';
+import { AppActions } from './app.actions';
 
 import { TodoTextInputComponent } from './todo-text-input.component';
 

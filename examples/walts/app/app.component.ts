@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AppActions } from './actions';
+import { AppActions } from './app.actions';
 import { AppDispatcher } from './app.dispatcher';
 import { AppStore, AppState } from './app.store';
 import { TodosRepository } from "./todos.repository";

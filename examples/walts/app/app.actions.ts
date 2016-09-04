@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, Action } from 'walts';
 
-import { AppState } from '../app.store';
-import { TodosRepository, FilterType } from '../todos.repository';
+import { AppState } from './app.store';
+import { TodosRepository, FilterType } from './todos.repository';
 
 @Injectable()
 export class AppActions extends Actions<AppState> {

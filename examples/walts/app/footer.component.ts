@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FilterType, FILTERS } from './todos.repository';
-import { AppActions } from './actions';
+import { AppActions } from './app.actions';
 import { AppDispatcher } from './app.dispatcher';
 
 @Component({

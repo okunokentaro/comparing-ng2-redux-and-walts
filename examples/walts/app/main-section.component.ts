@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import { Todo } from "./todo";
 import { FilterType } from "./todos.repository";
-import { AppActions } from "./actions";
+import { AppActions } from "./app.actions";
 import { AppDispatcher } from "./app.dispatcher";
 
 import { FooterComponent } from './footer.component';

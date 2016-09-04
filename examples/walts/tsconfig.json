@@ -14,7 +14,7 @@
         "./node_modules/typescript/lib/lib.es6.d.ts"
     ],
     "files": [
-        "app/actions/index.ts",
+        "app/app.actions.ts",
         "app/app.component.ts",
         "app/app.dispatcher.ts",
         "app/app.store.ts",

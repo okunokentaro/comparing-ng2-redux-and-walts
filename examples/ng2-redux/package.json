@@ -9,11 +9,11 @@
     "@angular/platform-browser": "2.0.0-rc.3",
     "@angular/platform-browser-dynamic": "2.0.0-rc.3",
     "core-js": "^2.4.0",
-    "ng2-redux": "3.3.0",
+    "ng2-redux": "3.3.9",
     "redux": "3.5.2",
     "rxjs": "5.0.0-beta.6",
     "todomvc-app-css": "^2.0.6",
-    "zone.js": "0.6.12"
+    "zone.js": "0.6.15"
   },
   "devDependencies": {
     "superstatic": "^4.0.2",

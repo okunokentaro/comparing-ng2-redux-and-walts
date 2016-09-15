@@ -3,7 +3,7 @@ import { ADD_TODO, DELETE_TODO, EDIT_TODO, COMPLETE_TODO, COMPLETE_ALL, CLEAR_CO
 import { AddTodoAction, DeleteTodoAction, EditTodoAction, CompleteTodoAction } from '../actions/index';
 import { Todo } from "../containers/App";
 
-const initialState = [
+export const initialState = [
   {
     text: 'Use Angular 2 + Redux',
     completed: false,

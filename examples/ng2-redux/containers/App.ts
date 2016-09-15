@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Unsubscribe, Dispatch, ActionCreatorsMapObject, bindActionCreators } from 'redux';
 import { NgRedux } from 'ng2-redux';
+import rootReducer from '../reducers/index';
 import * as TodoActions from '../actions/index';
 import Header from '../components/Header';
 import MainSection from '../components/MainSection';
@@ -12,7 +13,7 @@ export interface Todo {
 }
 
 export interface AppState {
-  todos: Todo[];
+  todos?: Todo[];
 }
 
 @Component({
@@ -28,7 +29,9 @@ export interface AppState {
 class App {
   disconnect: Unsubscribe;
 
-  constructor(private ngRedux: NgRedux<AppState>) {}
+  constructor(private ngRedux: NgRedux<AppState>) {
+    ngRedux.configureStore(rootReducer, {});
+  }
 
   ngOnInit() {
     this.disconnect = this.ngRedux.connect(

@@ -15,6 +15,7 @@
     ],
     "files": [
         "actions/index.ts",
+        "AppModule.ts",
         "components/Footer.ts",
         "components/Header.ts",
         "components/MainSection.ts",

@@ -1,11 +1,9 @@
 import { Component, Input } from '@angular/core';
 import * as TodoActions from '../actions/index';
-import TodoTextInput from './TodoTextInput';
 import { Todo } from "../containers/App";
 
 @Component({
   selector: 'ex-todo-item',
-  directives: [ TodoTextInput ],
   template: `
     <li
       [class.completed]="todo.completed"

@@ -1,8 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters';
 import { Todo } from '../containers/App';
-import TodoItem from './TodoItem';
-import Footer from './Footer';
 import * as TodoActions from '../actions/index'
 
 const TODO_FILTERS = {
@@ -13,7 +11,6 @@ const TODO_FILTERS = {
 
 @Component({
   selector: 'ex-main-section',
-  directives: [ TodoItem, Footer ],
   template: `
     <section class="main">
       <input

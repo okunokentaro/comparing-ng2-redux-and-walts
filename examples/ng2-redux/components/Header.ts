@@ -1,9 +1,7 @@
 import { Component, Input } from '@angular/core';
-import TodoTextInput from './TodoTextInput';
 
 @Component({
   selector: 'ex-header',
-  directives: [ TodoTextInput ],
   template: `
     <header class="header">
       <h1>todos</h1>

@@ -1,9 +1,6 @@
 import 'core-js';
-import 'rxjs/Rx';
 import 'zone.js/dist/zone';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import AppModule from './AppModule';
 
-import { bootstrap } from '@angular/platform-browser-dynamic';
-import { NgRedux } from 'ng2-redux';
-import App from './containers/App';
-
-bootstrap(App, [NgRedux]);
+platformBrowserDynamic().bootstrapModule(AppModule);

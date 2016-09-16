@@ -42,10 +42,6 @@ export class MainSectionComponent {
   constructor(private dispatcher: AppDispatcher,
               private actions: AppActions) {}
 
-  ngOnInit() {
-    this.dispatcher.emit(this.actions.setFilter('showAll'))
-  }
-
   onChangeCheckbox() {
     this.dispatcher.emit(this.actions.completeAll());
   }

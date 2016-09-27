@@ -16,7 +16,7 @@
     "zone.js": "0.6.25"
   },
   "devDependencies": {
-    "superstatic": "^4.0.2",
+    "superstatic": "^4.0.3",
     "tsconfig-cli": "^2.0.0",
     "typescript": "^1.8.10",
     "webpack": "^1.13.1"

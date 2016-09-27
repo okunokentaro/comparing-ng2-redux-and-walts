@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
-import { Todo } from './todo';
-import { AppDispatcher } from './app.dispatcher';
-import { AppActions } from './app.actions';
+import { Todo } from './todo'
+import { AppDispatcher } from './app.dispatcher'
+import { AppActions } from './app.actions'
 
 @Component({
   selector: 'ex-todo-item',
@@ -39,37 +39,37 @@ import { AppActions } from './app.actions';
   `,
 })
 export class TodoItemComponent {
-  @Input() todo: Todo;
+  @Input() todo: Todo
 
-  private editing: boolean;
+  private editing: boolean
 
   constructor(private dispatcher: AppDispatcher,
               private actions: AppActions) {}
 
   ngOnInit() {
-    this.editing = false;
+    this.editing = false
   }
 
   onDblclick() {
-    this.editing = true;
+    this.editing = true
   }
 
   onSave(id: number, text: string) {
     const action = text.length === 0
       ? this.actions.deleteTodo(id)
-      : this.actions.editTodo(id, text);
+      : this.actions.editTodo(id, text)
 
-    this.dispatcher.emit(action);
-    this.editing = false;
+    this.dispatcher.emit(action)
+    this.editing = false
   }
 
   onChangeTodo() {
-    const id = this.todo.id;
-    this.dispatcher.emit(this.actions.completeTodo(id));
+    const id = this.todo.id
+    this.dispatcher.emit(this.actions.completeTodo(id))
   }
 
   onClickDestroy() {
-    const id = this.todo.id;
-    this.dispatcher.emit(this.actions.deleteTodo(id));
+    const id = this.todo.id
+    this.dispatcher.emit(this.actions.deleteTodo(id))
   }
 }

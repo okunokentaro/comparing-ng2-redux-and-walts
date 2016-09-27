@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { FilterType, FILTERS } from './todos.repository';
-import { AppActions } from './app.actions';
-import { AppDispatcher } from './app.dispatcher';
+import { Component, Input } from '@angular/core'
+import { FilterType, FILTERS } from './todos.repository'
+import { AppActions } from './app.actions'
+import { AppDispatcher } from './app.dispatcher'
 
 @Component({
   selector: 'ex-footer',
@@ -33,15 +33,15 @@ import { AppDispatcher } from './app.dispatcher';
   `,
 })
 export class FooterComponent {
-  @Input() completedCount: number;
-  @Input() activeCount: number;
-  @Input() selectedFilter: string;
+  @Input() completedCount: number
+  @Input() activeCount: number
+  @Input() selectedFilter: string
 
-  private filters: FilterType[];
+  private filters: FilterType[]
 
   constructor(private dispatcher: AppDispatcher,
               private actions: AppActions) {
-    this.filters = FILTERS;
+    this.filters = FILTERS
   }
 
   onClickFilter(filter: FilterType) {

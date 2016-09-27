@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
-import { AppDispatcher } from './app.dispatcher';
-import { AppActions } from "./app.actions";
+import { AppDispatcher } from './app.dispatcher'
+import { AppActions } from "./app.actions"
 
 @Component({
   selector: 'ex-header',
@@ -21,6 +21,6 @@ export class HeaderComponent {
               private actions: AppActions) {}
 
   onSave(text: string) {
-    this.dispatcher.emit(this.actions.addTodo(text));
+    this.dispatcher.emit(this.actions.addTodo(text))
   }
 }

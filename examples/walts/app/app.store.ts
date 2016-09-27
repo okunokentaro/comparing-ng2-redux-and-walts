@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
-import { State, Store } from 'walts';
+import { Injectable } from '@angular/core'
+import { State, Store } from 'walts'
 
-import { AppDispatcher } from './app.dispatcher';
-import { Todo } from "./todo";
-import { FilterType } from "./todos.repository";
+import { AppDispatcher } from './app.dispatcher'
+import { Todo } from "./todo"
+import { FilterType } from "./todos.repository"
 
 export interface AppState extends State {
-  todos?         : Todo[];
-  filter?        : FilterType;
-  completedCount?: number;
-  activeCount?   : number;
+  todos?         : Todo[]
+  filter?        : FilterType
+  completedCount?: number
+  activeCount?   : number
 }
 
 const INIT_STATE: AppState = {
@@ -17,11 +17,11 @@ const INIT_STATE: AppState = {
   filter        : 'showAll',
   completedCount: null,
   activeCount   : null
-};
+}
 
 @Injectable()
 export class AppStore extends Store<AppState> {
   constructor(protected dispatcher: AppDispatcher) {
-    super(INIT_STATE, dispatcher);
+    super(INIT_STATE, dispatcher)
   }
 }

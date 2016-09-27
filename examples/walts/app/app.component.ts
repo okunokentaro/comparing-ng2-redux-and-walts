@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
-import { AppActions } from './app.actions';
-import { AppDispatcher } from './app.dispatcher';
-import { AppStore, AppState } from './app.store';
+import { AppActions } from './app.actions'
+import { AppDispatcher } from './app.dispatcher'
+import { AppStore, AppState } from './app.store'
 
 @Component({
   selector: 'ex-app',
@@ -19,7 +19,7 @@ import { AppStore, AppState } from './app.store';
   `,
 })
 export class AppComponent {
-  private state: AppState;
+  private state: AppState
   
   constructor(private actions: AppActions,
               private dispatcher: AppDispatcher,
@@ -27,14 +27,14 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.store.observable.subscribe((state) => {
-      this.state = state;
-    });
+      this.state = state
+    })
   }
 
   ngAfterViewInit(): void {
     requestAnimationFrame(() => {
-      this.dispatcher.emit(this.actions.updateTodos());
-    });
+      this.dispatcher.emit(this.actions.updateTodos())
+    })
   }
 
 }

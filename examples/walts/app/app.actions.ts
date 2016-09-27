@@ -53,6 +53,7 @@ export class AppActions extends Actions<AppState> {
   clearCompleted() {
     return this.combine(
       (state) => {
+        this.repository.clearCompleted();
         return state;
       },
       this.updateTodos()

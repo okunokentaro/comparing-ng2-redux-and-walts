@@ -18,7 +18,7 @@ const TODO_FILTERS = {
         class="toggle-all"
         type="checkbox"
         [attr.checked]="completedCount === todos.length ? true : null"
-        (change)="actions.completeAll"
+        (change)="actions.completeAll()"
       >
       <ul
         class="todo-list"

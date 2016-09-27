@@ -1,6 +1,6 @@
-import 'core-js';
-import 'zone.js/dist/zone';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import AppModule from './AppModule';
+import 'core-js'
+import 'zone.js/dist/zone'
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic'
+import AppModule from './AppModule'
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule)

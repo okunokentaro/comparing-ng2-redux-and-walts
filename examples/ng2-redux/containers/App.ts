@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { Unsubscribe, Dispatch, ActionCreatorsMapObject, bindActionCreators } from 'redux';
-import { NgRedux } from 'ng2-redux';
-import * as TodoActions from '../actions/index';
+import { Component } from '@angular/core'
+import { Unsubscribe, Dispatch, ActionCreatorsMapObject, bindActionCreators } from 'redux'
+import { NgRedux } from 'ng2-redux'
+import * as TodoActions from '../actions/index'
 
 export interface Todo {
-  text: string;
-  completed: boolean;
-  id: number;
+  text: string
+  completed: boolean
+  id: number
 }
 
 export interface AppState {
-  todos?: Todo[];
+  todos?: Todo[]
 }
 
 @Component({
@@ -23,7 +23,7 @@ export interface AppState {
   `,
 })
 class App {
-  disconnect: Unsubscribe;
+  disconnect: Unsubscribe
 
   constructor(private ngRedux: NgRedux<AppState>) {}
 
@@ -31,24 +31,24 @@ class App {
     this.disconnect = this.ngRedux.connect(
       this.mapStateToProps,
       this.mapDispatchToProps
-    )(this);
+    )(this)
   }
 
   ngOnDestroy() {
-    this.disconnect();
+    this.disconnect()
   }
 
   mapStateToProps(state: AppState): AppState {
     return {
       todos: state.todos
-    };
+    }
   }
 
   mapDispatchToProps(dispatch: Dispatch<any>): {actions: TodoActions.Actions} {
     return {
       actions: bindActionCreators(TodoActions as TodoActions.Actions, dispatch)
-    };
+    }
   }
 }
 
-export default App;
+export default App

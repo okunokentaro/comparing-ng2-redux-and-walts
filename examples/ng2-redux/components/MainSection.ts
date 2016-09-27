@@ -1,13 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters';
-import { Todo } from '../containers/App';
+import { Component, Input } from '@angular/core'
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters'
+import { Todo } from '../containers/App'
 import * as TodoActions from '../actions/index'
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
   [SHOW_ACTIVE]: (todo: Todo) => !todo.completed,
   [SHOW_COMPLETED]: (todo: Todo) => todo.completed
-} as { [key: string]: (value: Todo, index: number, array: Todo[]) => boolean; };
+} as { [key: string]: (value: Todo, index: number, array: Todo[]) => boolean }
 
 @Component({
   selector: 'ex-main-section',
@@ -30,7 +30,7 @@ const TODO_FILTERS = {
       <ex-footer
         [completedCount]="completedCount"
         [activeCount]="activeCount"
-        [selectedFilter]="filter"
+        [filter]="filter"
         (clearCompleted)="handleClearCompleted()"
         (show)="handleShow($event)"
       ></ex-footer>
@@ -38,42 +38,42 @@ const TODO_FILTERS = {
   `,
 })
 class MainSection {
-  @Input() todos: Todo[];
-  @Input() actions: TodoActions.Actions;
+  @Input() todos: Todo[]
+  @Input() actions: TodoActions.Actions
 
-  private filter: string;
-  private filteredTodos: Todo[];
-  private completedCount: number;
-  private activeCount: number;
+  private filter: string
+  private filteredTodos: Todo[]
+  private completedCount: number
+  private activeCount: number
 
   ngOnInit() {
-    this.filter = SHOW_ALL;
-    this.update();
+    this.filter = SHOW_ALL
+    this.update()
   }
 
   ngOnChanges() {
-    this.update();
+    this.update()
   }
 
   handleClearCompleted() {
-    this.actions.clearCompleted();
+    this.actions.clearCompleted()
   }
 
   handleShow(filter: string) {
-    this.filter = filter;
-    this.update();
+    this.filter = filter
+    this.update()
   }
 
   update() {
     if (this.filter) {
-      this.filteredTodos = this.todos.filter(TODO_FILTERS[this.filter]);
+      this.filteredTodos = this.todos.filter(TODO_FILTERS[this.filter])
     }
     this.completedCount = this.todos.reduce((count: number, todo: Todo) => {
-      return todo.completed ? count + 1 : count;
-    }, 0);
+      return todo.completed ? count + 1 : count
+    }, 0)
 
-    this.activeCount = this.todos.length - this.completedCount;
+    this.activeCount = this.todos.length - this.completedCount
   }
 }
 
-export default MainSection;
+export default MainSection

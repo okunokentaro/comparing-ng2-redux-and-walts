@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core'
 
 @Component({
   selector: 'ex-header',
@@ -14,13 +14,13 @@ import { Component, Input } from '@angular/core';
   `,
 })
 class Header {
-  @Input() addTodo: Function;
+  @Input() addTodo: Function
 
   handleSave(text: string) {
     if (text.length !== 0) {
-      this.addTodo(text);
+      this.addTodo(text)
     }
   }
 }
 
-export default Header;
+export default Header

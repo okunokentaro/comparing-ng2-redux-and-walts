@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import * as TodoActions from '../actions/index';
-import { Todo } from "../containers/App";
+import { Component, Input } from '@angular/core'
+import * as TodoActions from '../actions/index'
+import { Todo } from '../containers/App'
 
 @Component({
   selector: 'ex-todo-item',
@@ -37,27 +37,27 @@ import { Todo } from "../containers/App";
   `,
 })
 class TodoItem {
-  @Input() todo: Todo;
-  @Input() actions: TodoActions.Actions;
+  @Input() todo: Todo
+  @Input() actions: TodoActions.Actions
 
-  private editing: boolean;
+  private editing: boolean
 
   ngOnInit() {
-    this.editing = false;
+    this.editing = false
   }
 
   handleDoubleClick() {
-    this.editing = true;
+    this.editing = true
   }
 
   handleSave(id:number, text: string) {
     if (text.length === 0) {
-      this.actions.deleteTodo(id);
+      this.actions.deleteTodo(id)
     } else {
-      this.actions.editTodo(id, text);
+      this.actions.editTodo(id, text)
     }
-    this.editing = false;
+    this.editing = false
   }
 }
 
-export default TodoItem;
+export default TodoItem

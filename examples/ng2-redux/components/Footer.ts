@@ -1,11 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters';
+import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../constants/TodoFilters'
 
 const FILTER_TITLES = {
-  [SHOW_ALL]      : 'All',
-  [SHOW_ACTIVE]   : 'Active',
+  [SHOW_ALL]: 'All',
+  [SHOW_ACTIVE]: 'Active',
   [SHOW_COMPLETED]: 'Completed'
-} as {[key: string]: string};
+} as {[key: string]: string}
 
 @Component({
   selector: 'ex-footer',
@@ -16,12 +16,12 @@ const FILTER_TITLES = {
       </span>
 
       <ul class="filters">
-        <li *ngFor="let filter of filters">
+        <li *ngFor="let _filter of filters">
           <a
-            [class.selected]="filter === selectedFilter"
+            [class.selected]="_filter === filter"
             style="cursor: pointer"
-            (click)="handleShow(filter)"
-          >{{ title(filter) }}</a>
+            (click)="handleShow(_filter)"
+          >{{ title(_filter) }}</a>
         </li>
       </ul>
 
@@ -37,30 +37,30 @@ const FILTER_TITLES = {
   `,
 })
 class Footer {
-  @Input() completedCount: number;
-  @Input() activeCount: number;
-  @Input() selectedFilter: string;
-  @Output() clearCompleted = new EventEmitter<void>();
-  @Output() show = new EventEmitter<string>();
+  @Input() completedCount: number
+  @Input() activeCount: number
+  @Input() filter: string
+  @Output() clearCompleted = new EventEmitter<void>()
+  @Output() show = new EventEmitter<string>()
 
-  private itemWord: string;
-  private filters = [ SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED ];
+  private itemWord: string
+  private filters = [ SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED ]
 
   ngOnChanges() {
-    this.itemWord = this.activeCount === 1 ? 'item' : 'items';
+    this.itemWord = this.activeCount === 1 ? 'item' : 'items'
   }
 
   handleShow(filter: string) {
-    this.show.emit(filter);
+    this.show.emit(filter)
   }
 
   handleClearCompleted() {
-    this.clearCompleted.emit(null);
+    this.clearCompleted.emit(null)
   }
 
   title(filter: string): string {
-    return FILTER_TITLES[filter];
+    return FILTER_TITLES[filter]
   }
 }
 
-export default Footer;
+export default Footer

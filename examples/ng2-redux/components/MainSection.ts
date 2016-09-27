@@ -22,12 +22,13 @@ const TODO_FILTERS = {
       >
       <ul
         class="todo-list"
-        *ngFor="let todo of filteredTodos"
+        *ngFor="let todo of filteredTodos; trackBy: track"
       >
         <ex-todo-item [todo]="todo" [actions]="actions"></ex-todo-item>
       </ul>
       
       <ex-footer
+        *ngIf="todos.length"
         [completedCount]="completedCount"
         [activeCount]="activeCount"
         [filter]="filter"
@@ -73,6 +74,10 @@ class MainSection {
     }, 0)
 
     this.activeCount = this.todos.length - this.completedCount
+  }
+
+  track(index: number, todo: Todo): number {
+    return todo.id
   }
 }
 

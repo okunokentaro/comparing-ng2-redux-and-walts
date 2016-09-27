@@ -37,14 +37,19 @@ export class FooterComponent {
   @Input() activeCount: number
   @Input() selectedFilter: string
 
-  private filters: FilterType[]
+  private itemWord: string
+  private filters: string[]
 
   constructor(private dispatcher: AppDispatcher,
               private actions: AppActions) {
     this.filters = FILTERS
   }
 
-  onClickFilter(filter: FilterType) {
+  ngOnChanges() {
+    this.itemWord = this.activeCount === 1 ? 'item' : 'items'
+  }
+
+  onClickFilter(filter: string) {
     this.dispatcher.emit(this.actions.setFilter(filter))
   }
 

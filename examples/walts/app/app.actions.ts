@@ -2,98 +2,64 @@ import { Injectable } from '@angular/core'
 import { Actions, Action } from 'walts'
 
 import { AppState } from './app.store'
-import { TodosRepository, FilterType } from './todos.repository'
+import { TodosRepository, MAP_FILTERS } from './todos.repository'
 
 @Injectable()
 export class AppActions extends Actions<AppState> {
-  constructor(private repository: TodosRepository) {
-    super()
+  addTodo(text: string): Action<AppState> {
+    return (state) => {
+      state.todos.addTodo(text)
+      return state;
+    }
   }
 
-  addTodo(text: string): Action<AppState>[] {
-    return this.combine(
-      (state) => {
-        this.repository.addTodo(text)
-        return state
-      },
-      this.updateTodos()
-    )
+  clearCompletedAction(): Action<AppState> {
+    return (state) => {
+      state.todos.clearCompleted()
+      return {
+        todos: state.todos
+      }
+    }
   }
 
-  clearCompletedAction(): Action<AppState>[] {
-    return this.combine(
-      (state) => {
-        this.repository.clearCompleted()
-        return state
-      },
-      this.updateTodos()
-    )
+  completeAll(): Action<AppState> {
+    return (state) => {
+      state.todos.completeAll()
+      return state
+    }
   }
 
-  completeAll(): Action<AppState>[] {
-    return this.combine(
-      (state) => {
-        this.repository.completeAll()
-        return state
-      },
-      this.updateTodos()
-    )
+  completeTodo(id: number): Action<AppState> {
+    return (state) => {
+      state.todos.completeTodo(id)
+      return state
+    }
   }
 
-  completeTodo(id: number): Action<AppState>[] {
-    return this.combine(
-      (state) => {
-        this.repository.completeTodo(id)
-        return state
-      },
-      this.updateTodos()
-    )
+  clearCompleted(): Action<AppState> {
+    return (state) => {
+      state.todos.clearCompleted()
+      return state
+    }
   }
 
-  clearCompleted() {
-    return this.combine(
-      (state) => {
-        this.repository.clearCompleted()
-        return state
-      },
-      this.updateTodos()
-    )
+  deleteTodo(id: number): Action<AppState> {
+    return (state) => {
+      state.todos.deleteTodo(id)
+      return state
+    }
   }
 
-  deleteTodo(id: number): Action<AppState>[] {
-    return this.combine(
-      (state) => {
-        this.repository.deleteTodo(id)
-        return state
-      },
-      this.updateTodos()
-    )
+  editTodo(id: number, text: string): Action<AppState> {
+    return (state) => {
+      state.todos.editTodo(id, text)
+      return state
+    }
   }
 
-  editTodo(id: number, text: string): Action<AppState>[] {
-    return this.combine(
-      (state) => {
-        this.repository.editTodo(id, text)
-        return state
-      },
-      this.updateTodos()
-    )
-  }
-
-  setFilter(filter: FilterType): Action<AppState>[] {
-    return this.combine(
-      (state) => ({
-        filter
-      }),
-      this.updateTodos()
-    )
-  }
-
-  updateTodos(): Action<AppState> {
+  setFilter(filter: string): Action<AppState> {
     return (state) => ({
-      todos         : this.repository.filterByType(state.filter),
-      completedCount: this.repository.completedCount(),
-      activeCount   : this.repository.activeCount()
+      filter: MAP_FILTERS[filter]
     })
   }
 }

@@ -6,11 +6,17 @@ export type FilterType =
   'showActive' |
   'showCompleted'
 
-export const FILTERS: FilterType[] = [
-  'showAll',
-  'showActive',
-  'showCompleted'
+export const FILTERS: string[] = [
+  'All',
+  'Active',
+  'Completed'
 ]
+
+export const MAP_FILTERS: {[key: string]: FilterType} = {
+  All: 'showAll',
+  Active: 'showActive',
+  Completed: 'showCompleted',
+}
 
 @Injectable()
 export class TodosRepository {
@@ -61,18 +67,8 @@ export class TodosRepository {
     this.todos = this.todos.filter((todo) => todo.completed === false)
   }
 
-  filterByType(filter: FilterType): Todo[] {
-    if (filter === 'showAll') {
-      return this.todos
-    }
-    if (filter === 'showActive') {
-      return this.todos.filter((todo) => !todo.completed)
-    }
-    if (filter === 'showCompleted') {
-      return this.todos.filter((todo) => todo.completed)
-    }
-    console.assert(false, 'The unknown filter type has given.')
-    return
+  getAll(): Todo[] {
+    return this.todos
   }
 
   completedCount(): number {

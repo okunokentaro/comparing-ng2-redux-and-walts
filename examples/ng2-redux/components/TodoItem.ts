@@ -50,7 +50,7 @@ class TodoItem {
     this.editing = true
   }
 
-  handleSave(id:number, text: string) {
+  handleSave(id: number, text: string) {
     if (text.length === 0) {
       this.actions.deleteTodo(id)
     } else {

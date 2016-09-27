@@ -1,14 +1,16 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core'
+
+const INPUT = 'INPUT'
 
 @Component({
   selector: 'ex-todo-text-input',
   template: `
     <input
+      #INPUT
       [class.edit]="editing"
       [class.new-todo]="newTodo"
       type="text"
       [attr.placeholder]="placeholder"
-      autoFocus="true"
       [(ngModel)]="text"
       (blur)="handleBlur($event)"
       (keydown)="handleSubmit($event)"
@@ -21,6 +23,13 @@ class TodoTextInput {
   @Input() newTodo: boolean
   @Input() placeholder: string
   @Output() save = new EventEmitter()
+  @ViewChild(INPUT) inputRef: ElementRef
+
+  ngOnInit() {
+    if (this.inputRef) {
+      this.inputRef.nativeElement.focus()
+    }
+  }
 
   handleSubmit(e: any) {
     const text = e.target.value.trim()

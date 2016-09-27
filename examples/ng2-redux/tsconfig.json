@@ -1,32 +1,23 @@
 {
     "compilerOptions": {
         "target": "es5",
+        "lib": [
+            "dom",
+            "es5",
+            "es6"
+        ],
         "noImplicitAny": true,
+        "strictNullChecks": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "moduleResolution": "node",
         "outDir": "./.tmp"
     },
-    "filesGlob": [
-        "./**/*.ts",
-        "!./**/*.d.ts",
-        "!./node_modules/**/*",
-        "./node_modules/typescript/lib/lib.es6.d.ts"
+    "include": [
+        "./**/*.ts"
     ],
-    "files": [
-        "actions/index.ts",
-        "AppModule.ts",
-        "components/Footer.ts",
-        "components/Header.ts",
-        "components/MainSection.ts",
-        "components/TodoItem.ts",
-        "components/TodoTextInput.ts",
-        "constants/ActionTypes.ts",
-        "constants/TodoFilters.ts",
-        "containers/App.ts",
-        "index.ts",
-        "reducers/index.ts",
-        "reducers/todos.ts",
-        "node_modules/typescript/lib/lib.es6.d.ts"
+    "exclude": [
+        "./**/*.d.ts",
+        "node_modules"
     ]
 }

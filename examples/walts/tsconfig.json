@@ -1,35 +1,23 @@
 {
     "compilerOptions": {
         "target": "es5",
+        "lib": [
+            "dom",
+            "es5",
+            "es6"
+        ],
         "noImplicitAny": true,
+        "strictNullChecks": false,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "moduleResolution": "node",
         "outDir": "./.tmp"
     },
-    "filesGlob": [
-        "./**/*.ts",
-        "!./**/*.d.ts",
-        "!./node_modules/**/*",
-        "./node_modules/typescript/lib/lib.es6.d.ts"
+    "include": [
+        "./**/*.ts"
     ],
-    "files": [
-        "app/app.actions.ts",
-        "app/app.component.ts",
-        "app/app.dispatcher.ts",
-        "app/app.module.ts",
-        "app/app.store.ts",
-        "app/footer.component.ts",
-        "app/header.component.ts",
-        "app/main-section.component.ts",
-        "app/todo-item.component.ts",
-        "app/todo-text-input.component.ts",
-        "app/todo.ts",
-        "app/todos.repository.ts",
-        "index.ts",
-        "node_modules/typescript/lib/lib.es6.d.ts"
-    ],
-    "atom": {
-        "rewriteTsconfig": true
-    }
+    "exclude": [
+        "./**/*.d.ts",
+        "node_modules"
+    ]
 }

@@ -1,24 +1,22 @@
 import { Injectable } from '@angular/core'
 import { Actions, Action } from 'walts'
 
-import { AppState } from './app.store'
-import { TodosRepository, MAP_FILTERS } from './todos.repository'
+import { AppState } from './app.state'
+import { MAP_FILTERS } from './todos.repository'
 
 @Injectable()
 export class AppActions extends Actions<AppState> {
   addTodo(text: string): Action<AppState> {
     return (state) => {
       state.todos.addTodo(text)
-      return state;
+      return state
     }
   }
 
   clearCompletedAction(): Action<AppState> {
     return (state) => {
       state.todos.clearCompleted()
-      return {
-        todos: state.todos
-      }
+      return state
     }
   }
 

@@ -2,10 +2,15 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import { Store } from 'walts'
 
-import { AppState, INIT_STATE } from './app.state'
+import { AppState } from './app.state'
 import { AppDispatcher } from './app.dispatcher'
 import { TodosRepository, FilterType } from './todos.repository'
 import { Todo } from './todo'
+
+const INIT_STATE: AppState = {
+  todos: void 0,
+  filter: 'showAll'
+}
 
 @Injectable()
 export class AppStore extends Store<AppState> {

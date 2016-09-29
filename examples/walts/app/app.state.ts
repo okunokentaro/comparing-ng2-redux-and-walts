@@ -6,8 +6,3 @@ export interface AppState extends State {
   todos?: TodosRepository
   filter?: FilterType
 }
-
-export const INIT_STATE: AppState = {
-  todos: void 0,
-  filter: 'showAll'
-}
